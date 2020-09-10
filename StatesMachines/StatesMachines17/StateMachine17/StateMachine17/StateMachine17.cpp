@@ -1,3 +1,6 @@
+// StateMachine17.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
+//
+#include <iostream>
 #include "StateMachine.h"
 
 
@@ -11,19 +14,19 @@ int main()
 
 
 
-	Transition transHome(atHomeState, [gs]() {
+	Transition transHome([gs]() {
 		if (gs->isOutside)
 			return true;
 		return false;
 	});
 
-	Transition transMakeFood(makeFoodHomeState, [gs]() {
+	Transition transMakeFood([gs]() {
 		if (gs->isDay && gs->isHungry && gs->hasFood && !gs->isOutside)
 			return true;
 		return false;
 	});
 
-	Transition transKebab(goToKebabState, [gs]() {
+	Transition transKebab([gs]() {
 		if (gs->isDay && gs->isHungry && !gs->hasFood)
 			return true;
 		return false;
