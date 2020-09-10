@@ -7,23 +7,21 @@
 int main()
 {
 
-	GameState* gs = new GameState(true, true, false, false);
+	GameState* gs = new GameState(false, true, false, true);
 	State* atHomeState = new State("At Home");
 	State* makeFoodHomeState = new State("Making food");
 	State* goToKebabState = new State("Go to Kebab");
 
-
-
-	Transition transHome([gs]() {
+	Transition transHome([&gs]() {
 		std::cout << "GoHome" << endl;
 		if (gs->isOutside)
 			return true;
 		return false;
 	});
 
-	Transition transMakeFood([gs]() {
+	Transition transMakeFood([&gs]() {
 		std::cout << "MakeFood" << endl;
-		if (gs->isDay && gs->isHungry && gs->hasFood && !gs->isOutside)
+		if (!gs->isDay && gs->isHungry && gs->hasFood && !gs->isOutside)
 		{
 			gs->isHungry = false;
 			gs->hasFood = false;
@@ -33,7 +31,7 @@ int main()
 		return false;
 	});
 
-	Transition transKebab([gs]() {
+	Transition transKebab([&gs]() {
 		std::cout << "GoKebab" << endl;
 		if (gs->isDay && gs->isHungry && !gs->hasFood && !gs->isOutside)
 			return true;
@@ -44,7 +42,7 @@ int main()
 	atHomeState->AddOutState(goToKebabState);
 	atHomeState->AddTransitions(transMakeFood);
 	atHomeState->AddOutState(makeFoodHomeState);
-
+	
 	goToKebabState->AddTransitions(transHome);
 	goToKebabState->AddOutState(atHomeState);
 
@@ -52,6 +50,11 @@ int main()
 	stateMachine.AddStates(goToKebabState);
 	stateMachine.AddStates(makeFoodHomeState);
 	stateMachine.mainLoop();
+
+	delete gs;
+	delete atHomeState;
+	delete makeFoodHomeState;
+	delete goToKebabState;
 }
 
 
