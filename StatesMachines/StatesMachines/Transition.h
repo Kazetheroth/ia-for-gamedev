@@ -1,13 +1,14 @@
 #pragma once
 
-#include "State.h"
+#include <functional>
 
 class Transition
 {
 	private:
-		State *outState;
+		const State *outState;
+		const std::function<bool()> condition;
 	public:
-		Transition();
+		Transition(const State* outState, const std::function<bool()> newCondition);
 		void ChangeState();
 };
 
