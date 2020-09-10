@@ -1,16 +1,18 @@
 #pragma once
 #include <functional>
+
+#include "GameState.h"
 #include "State.h"
 
 
 class Transition
 {
 	private:
-		State *outState;
+		State* outState;
 		const std::function<bool()> condition;
 	public:
-		const std::function<bool()>& getCondition();
-		const State& getOuterState();
-		Transition(const State* outState, const std::function<bool()> newCondition);
+		Transition(State* outState, const std::function<bool()> newCondition);
+		State getOuterState();
+		const std::function<bool()> getCondition();	
 };
 

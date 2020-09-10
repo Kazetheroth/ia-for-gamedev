@@ -16,16 +16,23 @@ void StateMachine::checkTransition(const GameState * gameState)
 		Transition currentTransition = currentState_->getTransitions()[i];
 		if (currentTransition.getCondition())
 		{
-			this->currentState_ = currentTransition.getOuterState();
+			*this->currentState_ = currentTransition.getOuterState();
 		}
 	}
 }
 
 void StateMachine::mainLoop()
 {
-	char* userInput;
-	while (userInput != "stop")
+	char* response;
+	
+	while (response != "stop")
 	{
+		this->currentState_->DoSomething();
+		cout << "Type << ok >> for next action or << stop >> to stop" << endl;
+		while (response != "ok" || response != "stop")
+		{
+			cin >> response;
+		}
 		checkTransition(this->gs);
 	}
 }
