@@ -41,9 +41,12 @@ int main()
 	});
 
 	atHomeState->AddTransitions(transKebab);
+	atHomeState->AddOutState(goToKebabState);
 	atHomeState->AddTransitions(transMakeFood);
+	atHomeState->AddOutState(makeFoodHomeState);
 
 	goToKebabState->AddTransitions(transHome);
+	goToKebabState->AddOutState(atHomeState);
 
 	StateMachine stateMachine(atHomeState, gs);
 	stateMachine.AddStates(goToKebabState);

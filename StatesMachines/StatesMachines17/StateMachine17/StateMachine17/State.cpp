@@ -10,7 +10,7 @@ const vector<Transition>& State::getTransitions()
 	return this->transitions;
 }
 
-const vector<State*>& State::getOutState()
+const vector<State* >& State::getOutState()
 {
 	return this->outState;
 }
@@ -22,5 +22,15 @@ void State::DoSomething()
 
 void State::AddTransitions(const Transition transition)
 {
+	this->transitions.push_back(transition);
+}
+
+void State::AddOutStates(const State states)
+{
 	
+}
+
+void State::AddOutState(State* state)
+{
+	this->outState.push_back(state);
 }

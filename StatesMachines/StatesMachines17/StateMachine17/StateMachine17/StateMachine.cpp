@@ -21,14 +21,13 @@ void StateMachine::AddStates(State* newState)
 void StateMachine::checkTransition(const GameState * gameState)
 {
 	size_t transitionSize = currentState_->getTransitions().size();
-	std::cout << "CheckTransition : " << transitionSize << endl;
-	for (int i = 0; i < transitionSize; i++)
+	for (int i = 0; i < transitionSize; ++i)
 	{
-		std::cout << i << endl;
 		Transition currentTransition = currentState_->getTransitions()[i];
 		if (currentTransition.getCondition())
 		{
 			this->currentState_ = currentState_->getOutState()[i];
+			break;
 		}
 	}
 }
