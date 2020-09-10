@@ -8,18 +8,16 @@ StateMachine::StateMachine(State* startState, GameState* gs)
 
 }
 
-void StateMachine::checkTransition(const GameState* gameState)
-{
-
-		
-}
-
 void StateMachine::checkTransition(const GameState * gameState)
 {
-	const vector<Transition>& transitionTab = currentState_->getTransitions();
-	for (int i = 0; i < transitionTab.size(); i++)
+	int transitionSize = currentState_->getTransitions().size();
+	for (int i = 0; i < transitionSize; i++)
 	{
-
+		Transition currentTransition = currentState_->getTransitions()[i];
+		if (currentTransition.getCondition())
+		{
+			this->currentState_ = currentTransition.getOuterState();
+		}
 	}
 }
 
