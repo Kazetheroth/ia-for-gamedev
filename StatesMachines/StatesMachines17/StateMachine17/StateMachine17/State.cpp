@@ -17,9 +17,7 @@ const vector<State*>& State::getOutState()
 
 void State::DoSomething()
 {
-	char* response = nullptr;
-	cout << this->responsePhrase_ << endl;
-	
+	cout << this->responsePhrase_ << endl;	
 }
 
 void State::AddTransitions(const Transition transition)

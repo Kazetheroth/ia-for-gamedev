@@ -15,19 +15,27 @@ int main()
 
 
 	Transition transHome([gs]() {
+		std::cout << "GoHome" << endl;
 		if (gs->isOutside)
 			return true;
 		return false;
 	});
 
 	Transition transMakeFood([gs]() {
+		std::cout << "MakeFood" << endl;
 		if (gs->isDay && gs->isHungry && gs->hasFood && !gs->isOutside)
+		{
+			gs->isHungry = false;
+			gs->hasFood = false;
 			return true;
+		}
+			
 		return false;
 	});
 
 	Transition transKebab([gs]() {
-		if (gs->isDay && gs->isHungry && !gs->hasFood)
+		std::cout << "GoKebab" << endl;
+		if (gs->isDay && gs->isHungry && !gs->hasFood && !gs->isOutside)
 			return true;
 		return false;
 	});
