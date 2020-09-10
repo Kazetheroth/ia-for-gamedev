@@ -7,7 +7,7 @@
 int main()
 {
 
-	GameState* gs = new GameState();
+	GameState* gs = new GameState(true, true, false, false);
 	State* atHomeState = new State("At Home");
 	State* makeFoodHomeState = new State("Making food");
 	State* goToKebabState = new State("Go to Kebab");
@@ -40,7 +40,7 @@ int main()
 	StateMachine stateMachine(atHomeState, gs);
 	stateMachine.AddStates(goToKebabState);
 	stateMachine.AddStates(makeFoodHomeState);
-
+	stateMachine.mainLoop();
 }
 
 

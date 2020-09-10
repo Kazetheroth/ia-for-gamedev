@@ -1,4 +1,10 @@
 #include "State.h"
+
+State::State(const char* responseString)
+{
+	this->responsePhrase_ = responseString;
+}
+
 const vector<Transition>& State::getTransitions()
 {
 	return this->transitions;

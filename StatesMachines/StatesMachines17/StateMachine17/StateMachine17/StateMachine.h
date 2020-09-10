@@ -11,12 +11,13 @@ class StateMachine
 		const State *startState_;
 		State *currentState_;
 		GameState* gs;
-		vector<State> states_;
+		vector<State*> states_;
 	public:
 		StateMachine();
 		StateMachine(State* startState, GameState* gs);
 
-		void AddStates(const State* newState);
+		vector<State*>& getStates();
+		void AddStates(State* newState);
 		void checkTransition(const GameState* gameState);
 		void mainLoop();
 };

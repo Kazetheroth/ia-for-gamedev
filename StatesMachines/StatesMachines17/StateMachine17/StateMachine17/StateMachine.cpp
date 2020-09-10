@@ -8,6 +8,16 @@ StateMachine::StateMachine(State* startState, GameState* gs)
 
 }
 
+vector<State*>& StateMachine::getStates()
+{
+	return this->states_;
+}
+
+void StateMachine::AddStates(State* newState)
+{
+	this->getStates().push_back(newState);
+}
+
 void StateMachine::checkTransition(const GameState * gameState)
 {
 	size_t transitionSize = currentState_->getTransitions().size();

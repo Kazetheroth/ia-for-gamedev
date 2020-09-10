@@ -10,7 +10,7 @@ using namespace std;
 class State
 {
 	private:
-		char* responsePhrase_;
+		const char* responsePhrase_;
 		vector<State*> outState;
 		vector<Transition> transitions;
 	public:
