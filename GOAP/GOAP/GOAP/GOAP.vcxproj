@@ -152,6 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actions.h" />
+    <ClInclude Include="Condition.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="GoapSolver.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Precondition.h" />
@@ -159,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actions.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GoapSolver.cpp" />
     <ClCompile Include="pch.cpp">

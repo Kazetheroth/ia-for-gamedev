@@ -6,7 +6,7 @@ Actions::Actions()
 {
 }
 
-Actions::Actions(const std::string& name, const std::function<int()>& effect, int cost)
+Actions::Actions(const std::string& name, Effect* effect, int cost)
 {
 	this->name = name;
 	this->effect = effect;
@@ -28,12 +28,12 @@ void Actions::setName(const std::string& name)
 	this->name = name;
 }
 
-std::function<int()> Actions::getEffect() const
+Effect* Actions::getEffect() const
 {
 	return effect;
 }
 
-void Actions::setEffect(const std::function<int()>& effect)
+void Actions::setEffect(Effect* effect)
 {
 	this->effect = effect;
 }
