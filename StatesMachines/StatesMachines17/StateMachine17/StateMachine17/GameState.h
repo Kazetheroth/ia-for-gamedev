@@ -9,5 +9,5 @@ class GameState
 		bool hasFood;
 
 	GameState();
-	GameState(bool isDay, bool isHungry, bool isOutside, bool hasFood);
+	GameState(bool isDay, bool isHungry, bool hasFood, bool isOutside);
 };

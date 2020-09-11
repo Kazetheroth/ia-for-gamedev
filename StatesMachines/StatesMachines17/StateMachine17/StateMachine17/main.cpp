@@ -6,21 +6,18 @@
 
 int main()
 {
-
 	GameState* gs = new GameState(false, true, false, true);
 	State* atHomeState = new State("At Home");
 	State* makeFoodHomeState = new State("Making food");
 	State* goToKebabState = new State("Go to Kebab");
 
-	Transition transHome([&gs]() {
-		std::cout << "GoHome" << endl;
+	Transition transHome([gs]() {
 		if (gs->isOutside)
 			return true;
 		return false;
 	});
 
-	Transition transMakeFood([&gs]() {
-		std::cout << "MakeFood" << endl;
+	Transition transMakeFood([gs]() {
 		if (!gs->isDay && gs->isHungry && gs->hasFood && !gs->isOutside)
 		{
 			gs->isHungry = false;
@@ -31,8 +28,7 @@ int main()
 		return false;
 	});
 
-	Transition transKebab([&gs]() {
-		std::cout << "GoKebab" << endl;
+	Transition transKebab([gs]() {
 		if (gs->isDay && gs->isHungry && !gs->hasFood && !gs->isOutside)
 			return true;
 		return false;
@@ -55,6 +51,9 @@ int main()
 	delete atHomeState;
 	delete makeFoodHomeState;
 	delete goToKebabState;
+
+
+	return 0;
 }
 
 

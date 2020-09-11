@@ -8,7 +8,7 @@ class StateMachine
 {
 
 	private:
-		const State *startState_;
+		State *startState_;
 		State *currentState_;
 		GameState* gs;
 		vector<State*> states_;
@@ -16,7 +16,7 @@ class StateMachine
 		StateMachine();
 		StateMachine(State* startState, GameState* gs);
 
-		vector<State*>& getStates();
+		const vector<State*>& getStates() const;
 		void AddStates(State* newState);
 		void checkTransition(const GameState* gameState);
 		void mainLoop();

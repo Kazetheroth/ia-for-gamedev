@@ -5,17 +5,17 @@ State::State(const char* responseString)
 	this->responsePhrase_ = responseString;
 }
 
-const vector<Transition>& State::getTransitions()
+const vector<Transition>& State::getTransitions() const
 {
 	return this->transitions;
 }
 
-const vector<State* >& State::getOutState()
+const vector<State* >& State::getOutState() const
 {
 	return this->outState;
 }
 
-void State::DoSomething()
+void State::DoSomething() const
 {
 	cout << this->responsePhrase_ << endl;	
 }
