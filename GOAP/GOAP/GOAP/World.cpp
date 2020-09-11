@@ -6,12 +6,16 @@ World::World()
 {
 }
 
-World::World(int golds, int rocks, int wooden, int workers)
+
+World::World(int golds, int rocks, int wood, int freeWorkers, int goldWorkers, int rockWorkers, int woodWorkers)
 {
 	this->golds = golds;
 	this->rocks = rocks;
-	this->wooden = wooden;
-	this->workers = workers;
+	this->wood = wood;
+	this->freeWorkers = freeWorkers;
+	this->goldWorkers = goldWorkers;
+	this->rockWorkers = rockWorkers;
+	this->woodWorkers = woodWorkers;
 }
 
 World::~World()
