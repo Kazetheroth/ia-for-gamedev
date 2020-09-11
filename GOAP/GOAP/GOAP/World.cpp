@@ -42,22 +42,52 @@ void World::setRocks(int rocks)
 	this->rocks = rocks;
 }
 
-int World::getWooden() const
+int World::getWood() const
 {
-	return wooden;
+	return wood;
 }
 
-void World::setWooden(int wooden)
+void World::setWood(int wooden)
 {
-	this->wooden = wooden;
+	this->wood = wooden;
 }
 
-int World::getWorkers() const
+int World::getFreeWorkers() const
 {
-	return workers;
+	return freeWorkers;
 }
 
-void World::setWorkers(int workers)
+void World::setFreeWorkers(int workers)
 {
-	this->workers = workers;
+	this->freeWorkers = workers;
+}
+
+int World::getGoldWorkers() const
+{
+	return goldWorkers;
+}
+
+void World::setGoldWorkers(const int gold_workers)
+{
+	goldWorkers = gold_workers;
+}
+
+int World::getRockWorkers() const
+{
+	return rockWorkers;
+}
+
+void World::setRockWorkers(const int rock_workers)
+{
+	rockWorkers = rock_workers;
+}
+
+int World::getWoodWorkers() const
+{
+	return woodWorkers;
+}
+
+void World::setWoodWorkers(const int wood_workers)
+{
+	woodWorkers = wood_workers;
 }

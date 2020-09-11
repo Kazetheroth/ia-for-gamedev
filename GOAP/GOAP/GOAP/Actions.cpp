@@ -57,3 +57,8 @@ void Actions::setCost(int cost)
 {
 	this->cost = cost;
 }
+
+void Actions::addPreconditions(Precondition* addedPreconditions)
+{
+	this->preconditions.push_back(addedPreconditions);
+}

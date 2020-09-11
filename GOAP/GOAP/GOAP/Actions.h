@@ -20,6 +20,9 @@ public:
 	std::function<int()> getEffect() const;
 	void setName(const std::string& name);
 	std::string getName() const;
+	void addPreconditions(Precondition* addedPreconditions);
+
+	
 
 	Actions();
 
