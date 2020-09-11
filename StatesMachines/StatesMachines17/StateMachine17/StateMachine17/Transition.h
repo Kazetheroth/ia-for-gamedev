@@ -10,6 +10,6 @@ class Transition
 		std::function<bool()> condition;
 	public:
 		Transition(const std::function<bool()> newCondition);
-		const std::function<bool()> getCondition();	
+		const std::function<bool()>& getCondition();	
 };
 
