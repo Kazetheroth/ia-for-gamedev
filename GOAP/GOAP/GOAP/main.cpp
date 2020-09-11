@@ -57,7 +57,7 @@ void InitGOAP(World* ws)
 	fullActionList->push_back(assignWoodWorkers);
 
 
-	Precondition* haveWoodWorkers = new Precondition([ws]() {return ws->getWoodWorkers() >= 2 ? true : false; });
+	Precondition* haveWoodWorkers = new Precondition([ws]() {return ws->getWoodWorkers() >= 2 ? true : false; }, Condition::Wood);
 
 	Actions* cropSomeWood = new Actions("Lets Crop Some Wood", new Effect([ws]()
 		{
@@ -90,7 +90,7 @@ void InitGOAP(World* ws)
 	assignGoldWorkers->addPreconditions(haveFreeWorkers);
 	fullActionList->push_back(assignGoldWorkers);
 
-	Precondition* haveGoldWorkers = new Precondition([ws]() {return ws->getGoldWorkers() >= 2 ? true : false; });
+	Precondition* haveGoldWorkers = new Precondition([ws]() {return ws->getGoldWorkers() >= 2 ? true : false; }, Condition::Gold);
 
 	Actions* mineSomeGold = new Actions("Lets Mine Some Gold", new Effect([ws]()
 		{
@@ -122,7 +122,7 @@ void InitGOAP(World* ws)
 	assignRockWorkers->addPreconditions(haveFreeWorkers);
 	fullActionList->push_back(assignRockWorkers);
 
-	Precondition* haveRockWorkers = new Precondition([ws]() {return ws->getRockWorkers() >= 2 ? true : false; });
+	Precondition* haveRockWorkers = new Precondition([ws]() {return ws->getRockWorkers() >= 2 ? true : false; }, Condition::FreeWorkers);
 
 	Actions* breakSomeRock = new Actions("Lets Break Some Rock", new Effect([ws]()
 		{
