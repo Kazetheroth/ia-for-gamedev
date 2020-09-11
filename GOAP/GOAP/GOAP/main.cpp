@@ -70,7 +70,6 @@ int main()
 
 	unassignWoodWorkers->addPreconditions(haveWoodWorkers);
 
-
 	//======================
 	
 	Actions* assignGoldWorkers = new Actions("Assign worker to Gold", [ws]()

@@ -2,6 +2,8 @@
 
 class GameState
 {
+	//Classe permettant de gerer les états du monde
+
 	public:
 		bool isDay;
 		bool isHungry;
