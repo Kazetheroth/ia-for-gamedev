@@ -1,5 +1,3 @@
-// StateMachine17.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
 #include <iostream>
 #include "StateMachine.h"
 
@@ -17,6 +15,7 @@ int main()
 
 
 	//Création des transitions qui seront plus tard associés aux state
+	//Elles sont crées avec des lambda
 	Transition transHome([gs]() {
 		if (gs->isOutside && !gs->isDay)
 			return true;
@@ -88,10 +87,12 @@ int main()
 	stateMachine.mainLoop();
 
 	//Destruction des pointeurs
+	//La liste de delete aurait pu très bien être remplacer par une itération sur un tableau
 	delete gs;
 	delete atHomeState;
 	delete makeFoodHomeState;
 	delete goToKebabState;
+	delete goToSleep;
 
 
 	return 0;
