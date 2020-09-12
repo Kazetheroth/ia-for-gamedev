@@ -12,7 +12,6 @@ void InitGOAP(World* ws)
 	std::vector<Actions*> *fullActionList = new std::vector<Actions*>;
 	
 	//====================== INIT FINAL ACTION
-    /* Précondition have 5 Workers */
 	Precondition* haveFreeWorkersBuilding = new Precondition([ws]() {return ws->getFreeWorkers() >= 5 ? true : false; }, Condition::FreeWorkers);
 	Precondition* haveGolds = new Precondition([ws]() {return ws->getGolds() >= 10 ? true : false; }, Condition::Gold);
 	Precondition* haveRocks = new Precondition([ws]() {return ws->getRocks() >= 10 ? true : false; }, Condition::Rock);
@@ -68,7 +67,7 @@ void InitGOAP(World* ws)
 
 	Actions* cropSomeWood = new Actions("Lets Crop Some Wood", new Effect([ws]()
 		{
-            ws->setWood(ws->getWood() + 1);
+            ws->setWood(ws->getWood() + ws->getWoodWorkers());
 			return true;
 		}, Condition::Wood),
 		1);
@@ -106,7 +105,7 @@ void InitGOAP(World* ws)
 
 	Actions* mineSomeGold = new Actions("Lets Mine Some Gold", new Effect([ws]()
 		{
-            ws->setGolds(ws->getGolds() + 1);
+            ws->setGolds(ws->getGolds() + ws->getGoldWorkers());
 			return true;
 		}, Condition::Gold),
 		1);
@@ -143,7 +142,7 @@ void InitGOAP(World* ws)
 
 	Actions* breakSomeRock = new Actions("Lets Break Some Rock", new Effect([ws]()
 		{
-            ws->setRocks(ws->getRocks() + 1);
+            ws->setRocks(ws->getRocks() + ws->getRockWorkers());
 			return true;
 		}, Condition::Rock),
 		1);
@@ -169,13 +168,14 @@ void InitGOAP(World* ws)
 	GoapSolver* gs = new GoapSolver(buildHouse, *ws);
 	gs->solveActionSteps(fullActionList, gs->getFinalTarget());
 
-	std::cout << ws->getGoldWorkers() << std::endl;
+	std::cout << "Gold : " << ws->getGolds() << std::endl;
+    std::cout << "Gold Worker : " << ws->getGoldWorkers() << std::endl;
 
     //====================== Free/delete actions
-    for (int i = 0; i < fullActionList[0].size(); ++i) {
+/*    for (int i = 0; i < fullActionList[0].size(); ++i) {
         delete fullActionList[0][i];
     }
-    delete fullActionList;
+    delete fullActionList;*/
 }
 
 int main()
