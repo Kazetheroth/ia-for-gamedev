@@ -16,10 +16,10 @@ Actions::Actions(const std::string& name, Effect* effect, int cost)
 
 Actions::~Actions()
 {
+    delete effect;
     for (int i = 0; i < getPreconditions().size(); ++i) {
         delete preconditions[i];
     }
-    delete effect;
 }
 
 std::string Actions::getName() const

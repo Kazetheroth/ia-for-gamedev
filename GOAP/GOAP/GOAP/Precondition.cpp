@@ -5,6 +5,7 @@
 Precondition::Precondition(std::function<bool()> verifyCondition, Condition responseCondition)
 {
 	this->verifyCondition = verifyCondition;
+	this->responseCondition = responseCondition;
 }
 
 
@@ -24,11 +25,11 @@ void Precondition::setVerifyCondition(const std::function<bool()>& verify_condit
 
 Condition Precondition::getResponseCondition() const
 {
-	return responseCondition;
+	return this->responseCondition;
 }
 
 void Precondition::setResponseCondition(const Condition response_condition)
 {
-	responseCondition = response_condition;
+	this->responseCondition = response_condition;
 }
 

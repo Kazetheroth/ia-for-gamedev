@@ -29,7 +29,7 @@ void Effect::setEffectLambda(const std::function<int()>& effect)
 
 Condition Effect::getConditionEnum() const
 {
-	return responseCondition;
+	return this->responseCondition;
 }
 
 void Effect::setConditionEnum(const Condition condition)

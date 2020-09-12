@@ -7,7 +7,7 @@ std::vector<Actions*> GoapSolver::solveActionSteps(std::vector<Actions*>* dispon
 {
 	std::vector<Precondition*> targetPrecondition = currentTarget->getPreconditions();
 	size_t targetPreconditionSize = targetPrecondition.size();
-
+    std::cout << currentTarget->getName() << std::endl;
     for (int i = 0; i < targetPreconditionSize; i++)
     {
         std::cout << "Condition " << i << " : " << targetPrecondition[i]->getVerifyCondition()() << std::endl;
@@ -15,15 +15,12 @@ std::vector<Actions*> GoapSolver::solveActionSteps(std::vector<Actions*>* dispon
             for (Actions* actions : disponiblesActions[0])
             {
                 if (actions->getEffect()->getConditionEnum() == targetPrecondition[i]->getResponseCondition()){
-                    this->currentPath.push_back(actions);
+                    actions->getEffect()->getEffectLambda();
                     return solveActionSteps(disponiblesActions, actions);
                 }
             }
         }
     }
-
-
-	//free(lastCondition);
 	return this->currentPath;
 }
 

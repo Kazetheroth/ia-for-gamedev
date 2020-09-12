@@ -13,10 +13,10 @@ void InitGOAP(World* ws)
 	
 	//====================== INIT FINAL ACTION
     /* Précondition have 5 Workers */
-	Precondition* haveFreeWorkersBuilding = new Precondition([ws]() {return ws->getFreeWorkers() >= 5 ? true : false; }, Condition::Build);
-	Precondition* haveGolds = new Precondition([ws]() {return ws->getGolds() >= 10 ? true : false; }, Condition::Build);
-	Precondition* haveRocks = new Precondition([ws]() {return ws->getRocks() >= 10 ? true : false; }, Condition::Build);
-	Precondition* haveWoods = new Precondition([ws]() {return ws->getWood() >= 10 ? true : false; }, Condition::Build);
+	Precondition* haveFreeWorkersBuilding = new Precondition([ws]() {return ws->getFreeWorkers() >= 5 ? true : false; }, Condition::FreeWorkers);
+	Precondition* haveGolds = new Precondition([ws]() {return ws->getGolds() >= 10 ? true : false; }, Condition::Gold);
+	Precondition* haveRocks = new Precondition([ws]() {return ws->getRocks() >= 10 ? true : false; }, Condition::Rock);
+	Precondition* haveWoods = new Precondition([ws]() {return ws->getWood() >= 10 ? true : false; }, Condition::Wood);
 
 	Precondition* haveFreeWorkers = new Precondition([ws]() {return ws->getFreeWorkers() >= 1 ? true : false; }, Condition::FreeWorkers);
 
@@ -80,7 +80,7 @@ void InitGOAP(World* ws)
 	Actions* unassignWoodWorkers = new Actions("Unassign worker from Wood", new Effect([ws]()
 		{
             ws->setWoodWorkers(ws->getWoodWorkers() - 1);
-            ws->setFreeWorkers(ws->getFreeWorkers() - 1);
+            ws->setFreeWorkers(ws->getFreeWorkers() + 1);
 			return true;
 		}, Condition::FreeWorkers),
 		1);
@@ -88,16 +88,10 @@ void InitGOAP(World* ws)
 	unassignWoodWorkers->addPreconditions(haveWoodWorkers);
 	fullActionList->push_back(unassignWoodWorkers);
 
-<<<<<<< HEAD
-	//======================
-	
-	Actions* assignGoldWorkers = new Actions("Assign worker to Gold", [ws]()
-=======
 
 	//====================== INIT GOLDWORKER ACTION
 
 	Actions* assignGoldWorkers = new Actions("Assign worker to Gold", new Effect([ws]()
->>>>>>> 940e410286f7eb0d6af0f03f76410ae74d0b0269
 		{
             ws->setFreeWorkers(ws->getFreeWorkers() - 1);
             ws->setGoldWorkers(ws->getGoldWorkers() + 1);
@@ -124,7 +118,7 @@ void InitGOAP(World* ws)
 	Actions* unassignGoldWorkers = new Actions("Unassign worker from Gold", new Effect([ws]()
 		{
             ws->setGoldWorkers(ws->getGoldWorkers() - 1);
-            ws->setFreeWorkers(ws->getFreeWorkers() - 1);
+            ws->setFreeWorkers(ws->getFreeWorkers() + 1);
 			return true;
 		}, Condition::FreeWorkers),
 		1);
@@ -161,7 +155,7 @@ void InitGOAP(World* ws)
 	Actions* unassignRockWorkers = new Actions("Unassign worker from Rock", new Effect([ws]()
 		{
             ws->setRockWorkers(ws->getRockWorkers() - 1);
-            ws->setFreeWorkers(ws->getFreeWorkers() - 1);
+            ws->setFreeWorkers(ws->getFreeWorkers() + 1);
 			return true;
 		}, Condition::FreeWorkers),
 		1);
@@ -174,6 +168,8 @@ void InitGOAP(World* ws)
 
 	GoapSolver* gs = new GoapSolver(buildHouse, *ws);
 	gs->solveActionSteps(fullActionList, gs->getFinalTarget());
+
+	std::cout << ws->getGoldWorkers() << std::endl;
 
     //====================== Free/delete actions
     for (int i = 0; i < fullActionList[0].size(); ++i) {
