@@ -3,33 +3,28 @@
 #include <iostream>
 
 
-std::vector<Actions*> GoapSolver::solveActionSteps(std::vector<Actions*>* disponiblesActions)
+std::vector<Actions*> GoapSolver::solveActionSteps(std::vector<Actions*>* disponiblesActions, Actions* currentTarget)
 {
-	std::vector<Precondition*> finalPreconditions = this->finalTarget->getPreconditions();
-	size_t finalPreconditionsSize = finalPreconditions.size();
+	std::vector<Precondition*> targetPrecondition = currentTarget->getPreconditions();
+	size_t targetPreconditionSize = targetPrecondition.size();
 
-	//int *lastCondition = (int*)malloc(this->finalTarget->getPreconditions().size() * sizeof(int));
-	
-	for (Actions* actions : disponiblesActions[0])
-	{
-		switch (actions->getEffect()->getConditionEnum())
-		{
-		case Condition::Build:
-			std::cout << "Builder!" << std::endl;
-			break;
-		default:
-			break;
-		}
-		
-	} 
-	
-	for (int i = 0; i < finalPreconditionsSize; i++)
-	{
-		std::cout << "Condition " << i << " : " << finalPreconditions[i]->getVerifyCondition()() << std::endl;
-	}
+    for (int i = 0; i < targetPreconditionSize; i++)
+    {
+        std::cout << "Condition " << i << " : " << targetPrecondition[i]->getVerifyCondition()() << std::endl;
+        if (!targetPrecondition[i]->getVerifyCondition()()){
+            for (Actions* actions : disponiblesActions[0])
+            {
+                if (actions->getEffect()->getConditionEnum() == targetPrecondition[i]->getResponseCondition()){
+                    this->currentPath.push_back(actions);
+                    return solveActionSteps(disponiblesActions, actions);
+                }
+            }
+        }
+    }
+
 
 	//free(lastCondition);
-	return std::vector<Actions*>();
+	return this->currentPath;
 }
 
 GoapSolver::GoapSolver()
@@ -46,4 +41,12 @@ GoapSolver::GoapSolver(Actions* finalTarget, World worldState)
 
 GoapSolver::~GoapSolver()
 {
+}
+
+Actions *GoapSolver::getFinalTarget() const {
+    return finalTarget;
+}
+
+void GoapSolver::setFinalTarget(Actions *finalTarget) {
+    GoapSolver::finalTarget = finalTarget;
 }
