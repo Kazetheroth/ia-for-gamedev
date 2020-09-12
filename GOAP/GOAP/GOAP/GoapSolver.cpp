@@ -11,12 +11,14 @@ std::vector<Actions*> GoapSolver::solveActionSteps(std::vector<Actions*>* dispon
     for (int i = 0; i < targetPreconditionSize; i++)
     {
         std::cout << "Condition " << i << " : " << targetPrecondition[i]->getVerifyCondition()() << std::endl;
-        if (!targetPrecondition[i]->getVerifyCondition()()){
+        while (!targetPrecondition[i]->getVerifyCondition()()){
             for (Actions* actions : disponiblesActions[0])
             {
                 if (actions->getEffect()->getConditionEnum() == targetPrecondition[i]->getResponseCondition()){
-                    actions->getEffect()->getEffectLambda();
-                    return solveActionSteps(disponiblesActions, actions);
+                    actions->getEffect()->getEffectLambda()();
+                    this->currentPath.push_back(actions);
+                    if(!targetPrecondition[i]->getVerifyCondition()())
+                        return solveActionSteps(disponiblesActions, actions);
                 }
             }
         }
