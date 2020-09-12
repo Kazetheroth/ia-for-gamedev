@@ -2,7 +2,7 @@
 class World
 {
 public:
-	
+	// Toutes les ressources du jeu
 
 	private:
 		int golds;

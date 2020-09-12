@@ -15,7 +15,7 @@ public:
 	void setConditionEnum(const Condition condition);
 
 private:
-	std::function<int()> effect;
-	Condition responseCondition;
+	std::function<int()> effect; // Lambda a executer avec l'effet
+	Condition responseCondition; // Condition à la quel l'effet répond
 };
 

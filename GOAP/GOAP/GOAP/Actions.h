@@ -8,10 +8,10 @@
 class Actions
 {
 private:
-	std::string name;
-	Effect* effect;
-	std::vector<Precondition*> preconditions;
-	int cost;
+	std::string name; // Sert à l'affichage des actions
+	Effect* effect; // Pointeur vers un new Effect déclaré à la création de l'action
+	std::vector<Precondition*> preconditions; // Liste de Préconditions nécessaire à l'activation de l'action
+	int cost; // cout de l'action
 public:
 	int getCost() const;
 	void setCost(int cost);

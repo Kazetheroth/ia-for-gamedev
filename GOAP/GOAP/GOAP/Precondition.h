@@ -7,8 +7,8 @@
 class Precondition
 {
 	private:
-		std::function<bool()> verifyCondition;
-		Condition responseCondition;
+		std::function<bool()> verifyCondition; // Lambda verification du World s'il rempli les conditions nécessaires
+		Condition responseCondition; // Condition que l'effet doit remplir pour remplir la Verify condition
 	public:
 		Condition getResponseCondition() const;
 		void setResponseCondition(const Condition response_condition);

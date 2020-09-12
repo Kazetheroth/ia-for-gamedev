@@ -362,3 +362,4 @@ MigrationBackup/
 FodyWeavers.xsd
 GOAP/.idea/
 GOAP/cmake-build-debug/
+.idea/
