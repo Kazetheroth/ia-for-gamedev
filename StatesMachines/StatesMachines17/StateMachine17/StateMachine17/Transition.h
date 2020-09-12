@@ -7,6 +7,7 @@
 class Transition
 {
 	private:
+		//Attribut contenant la lambda permettant de vérifier les conditions de la transition
 		std::function<bool()> condition;
 	public:
 		Transition(const std::function<bool()> newCondition);
