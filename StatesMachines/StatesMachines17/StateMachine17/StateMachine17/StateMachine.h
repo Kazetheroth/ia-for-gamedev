@@ -8,7 +8,10 @@ class StateMachine
 {
 
 	private:
+		//State de départ
 		State *startState_;
+
+		//State dans laquelle la StateMachine est
 		State *currentState_;
 		GameState* gs;
 		vector<State*> states_;

@@ -88,10 +88,16 @@ void InitGOAP(World* ws)
 	unassignWoodWorkers->addPreconditions(haveWoodWorkers);
 	fullActionList->push_back(unassignWoodWorkers);
 
+<<<<<<< HEAD
+	//======================
+	
+	Actions* assignGoldWorkers = new Actions("Assign worker to Gold", [ws]()
+=======
 
 	//====================== INIT GOLDWORKER ACTION
 
 	Actions* assignGoldWorkers = new Actions("Assign worker to Gold", new Effect([ws]()
+>>>>>>> 940e410286f7eb0d6af0f03f76410ae74d0b0269
 		{
             ws->setFreeWorkers(ws->getFreeWorkers() - 1);
             ws->setGoldWorkers(ws->getGoldWorkers() + 1);
